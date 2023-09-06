@@ -36,6 +36,28 @@ void displayStudents(const std::vector<Student>& database) {
     }
 }
 
+void dublicat(const std::vector<Student>& database){
+    std::cout << "Дубликаты в базе данных:\n";
+    for (size_t i = 0; i < database.size(); ++i) {
+        for (size_t j = i + 1; j < database.size(); ++j) {
+            if (database[i].name == database[j].name && database[i].age == database[j].age && database[i].major == database[j].major &&
+                database[i].gpa == database[j].gpa) {
+                // Найден дубликат
+                std::cout << "Дубликаты:\n";
+                std::cout << "Имя: " << database[i].name << "\n";
+                std::cout << "Возраст: " << database[i].age << "\n";
+                std::cout << "Специальность: " << database[i].major << "\n";
+                std::cout << "Средний балл: " << database[i].gpa << "\n";
+                std::cout << "Имя: " << database[j].name << "\n";
+                std::cout << "Возраст: " << database[j].age << "\n";
+                std::cout << "Специальность: " << database[j].major << "\n";
+                std::cout << "Средний балл: " << database[j].gpa << "\n\n";
+                }
+            }
+        }
+    }
+}
+
 int main() {
     std::vector<Student> database;
 
