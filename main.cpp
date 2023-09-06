@@ -36,6 +36,7 @@ void displayStudents(const std::vector<Student>& database) {
     }
 }
 
+//Функция нахождения дубликатов в базе данных
 void dublicat(const std::vector<Student>& database){
     std::cout << "Дубликаты в базе данных:\n";
     for (size_t i = 0; i < database.size(); ++i) {
