@@ -7,6 +7,11 @@ struct Student {
     int age;
     std::string major;
     double gpa;
+
+    
+    bool operator==(const Student& other) const{
+        return name == other.name && age == other.age && major == other.major && gpa == other.gpa;
+    }
 };
 
 // Функция для добавления студента в базу данных
@@ -36,13 +41,13 @@ void displayStudents(const std::vector<Student>& database) {
     }
 }
 
+
 //Функция нахождения дубликатов в базе данных
 void dublicat(const std::vector<Student>& database){
     std::cout << "Дубликаты в базе данных:\n";
     for (size_t i = 0; i < database.size(); ++i) {
         for (size_t j = i + 1; j < database.size(); ++j) {
-            if (database[i].name == database[j].name && database[i].age == database[j].age && database[i].major == database[j].major &&
-                database[i].gpa == database[j].gpa) {
+            if (database[i] == database[j]) {
                 // Найден дубликат
                 std::cout << "Дубликаты:\n";
                 std::cout << "Имя: " << database[i].name << "\n";
@@ -53,7 +58,7 @@ void dublicat(const std::vector<Student>& database){
                 std::cout << "Возраст: " << database[j].age << "\n";
                 std::cout << "Специальность: " << database[j].major << "\n";
                 std::cout << "Средний балл: " << database[j].gpa << "\n\n";
-                }
+                
             }
         }
     }
