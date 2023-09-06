@@ -8,7 +8,7 @@ struct Student {
     std::string major;
     double gpa;
 
-    
+    //Функция сравнения по всем полям
     bool operator==(const Student& other) const{
         return name == other.name && age == other.age && major == other.major && gpa == other.gpa;
     }
