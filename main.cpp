@@ -44,6 +44,8 @@ void displayStudents(const std::vector<Student>& database) {
 
 //Функция нахождения дубликатов в базе данных
 void dublicat(const std::vector<Student>& database){
+    bool duplicatesFound = false; // Флаг, чтобы отслеживать наличие дубликатов
+
     std::cout << "Дубликаты в базе данных:\n";
     for (size_t i = 0; i < database.size(); ++i) {
         for (size_t j = i + 1; j < database.size(); ++j) {
@@ -58,16 +60,60 @@ void dublicat(const std::vector<Student>& database){
                 std::cout << "Возраст: " << database[j].age << "\n";
                 std::cout << "Специальность: " << database[j].major << "\n";
                 std::cout << "Средний балл: " << database[j].gpa << "\n\n";
-                
+                duplicatesFound = true;
             }
         }
     }
+    if (!duplicatesFound) {
+        std::cout << "Дубликатов нет.\n";
+    }
 }
 
-int main() {
-    // text comment
-    std::vector<Student> database;
+void testStudentComparisonAndDuplicates() {
+    std::cout << "Тест 1: Поиск дубликатов в пустой базе данных\n";
+    std::vector<Student> emptyDatabase;
+    dublicat(emptyDatabase);
+    std::cout << "\n";
 
+    std::cout << "Тест 2: Поиск дубликатов с одним студентом в базе данных\n";
+    std::vector<Student> singleStudentDatabase;
+    Student student1 = {"Alice", 20, "Computer Science", 3.5};
+    singleStudentDatabase.push_back(student1);
+    dublicat(singleStudentDatabase);
+    std::cout << "\n";
+
+    std::cout << "Тест 3: Поиск дубликатов с разными студентами в базе данных\n";
+    std::vector<Student> multipleStudentsDatabase;
+    Student student2 = {"Bob", 22, "Mathematics", 3.2};
+    Student student3 = {"Alice", 20, "Computer Science", 3.5};
+    multipleStudentsDatabase.push_back(student2);
+    multipleStudentsDatabase.push_back(student3);
+    dublicat(multipleStudentsDatabase);
+    std::cout << "\n";
+
+    std::cout << "Тест 4: Поиск дубликатов с несколькими дубликатами в базе данных\n";
+    std::vector<Student> duplicateStudentsDatabase;
+    Student student4 = {"Eve", 21, "Physics", 3.8};
+    duplicateStudentsDatabase.push_back(student2);
+    duplicateStudentsDatabase.push_back(student3);
+    duplicateStudentsDatabase.push_back(student4);
+    duplicateStudentsDatabase.push_back(student2);
+    dublicat(duplicateStudentsDatabase);
+    std::cout << "\n";
+
+    std::cout << "Тест 5: Поиск дубликатов с разными студентами в базе данных без дубликатов\n";
+    std::vector<Student> uniqueStudentsDatabase;
+    uniqueStudentsDatabase.push_back(student2);
+    uniqueStudentsDatabase.push_back(student4);
+    dublicat(uniqueStudentsDatabase);
+    std::cout << "\n";
+}
+
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    std::vector<Student> database;
+    testStudentComparisonAndDuplicates();
     int choice;
     do {
         std::cout << "Меню:\n";
