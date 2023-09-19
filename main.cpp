@@ -65,6 +65,7 @@ void dublicat(const std::vector<Student>& database){
 }
 
 int main() {
+    // text comment
     std::vector<Student> database;
 
     int choice;
